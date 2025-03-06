@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Edificios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex">
+    <!-- Barra lateral -->
+    <div id="sidebar" class="w-64 bg-blue-600 text-white h-screen p-4 transition-transform transform -translate-x-full fixed top-16">
+        <ul>
+            <li class="p-2 hover:bg-blue-500 cursor-pointer"><a href="quill_index.html">Inicio</a></li>
+            <li class="p-2 hover:bg-blue-500 cursor-pointer"><a href="quill_reportes.html">Reportes</a></li>
+            <li class="p-2 hover:bg-blue-500 cursor-pointer">Configuración</li>
+        </ul>
+    </div>
+    
+    <!-- Contenedor principal -->
+    <div class="flex flex-col w-full">
+        <nav class="w-full bg-blue-600 p-4 flex justify-between items-center shadow-md fixed top-0 left-0 right-0 z-10">
+            <button id="toggleSidebar" class="text-white text-2xl font-bold">☰</button>
+            <h1 class="text-white text-xl font-bold">Calendario de Edificios</h1>
+            <input type="text" placeholder="Buscar..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </nav>
+        
+        <div class="flex space-x-4 my-20 justify-center">
+            <select id="edificio" class="px-4 py-2 border border-gray-300 rounded-lg">
+                <option value="Edificio 1">Edificio 1</option>
+                <option value="Edificio 2">Edificio 2</option>
+            </select>
+            <select id="dia" class="px-4 py-2 border border-gray-300 rounded-lg">
+                <option value="Domingo">Domingo</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sabado">Sabado</option>
+            </select>
+        </div>
+        
+        <h2 class="text-2xl font-bold my-4 text-center">Horario de <span id="titulo-edificio">Edificio 1</span> - <span id="titulo-dia">Lunes</span></h2>
+        <div class="overflow-x-auto w-full px-6">
+            <table class="w-full border border-gray-300 bg-white shadow-lg">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border border-gray-300 px-4 py-2">Hora</th>
+                        <script>
+                            for (let i = 1; i <= 10; i++) {
+                                document.write(`<th class='border border-gray-300 px-4 py-2'>Salón ${i}</th>`);
+                            }
+                        </script>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        let horas = [];
+                        for (let i = 7; i <= 21; i++) {
+                            let hora = (i <= 12) ? `${i}:00 AM` : `${i - 12}:00 PM`;
+                            horas.push(hora);
+                        }
+                        
+                        horas.forEach(hora => {
+                            document.write(`<tr class='hover:bg-gray-100'>`);
+                            document.write(`<td class='border border-gray-300 px-4 py-2 font-semibold'>${hora}</td>`);
+                            for (let i = 1; i <= 10; i++) {
+                                document.write(`<td class='border border-gray-300 px-4 py-2 text-gray-700'></td>`);
+                            }
+                            document.write(`</tr>`);
+                        });
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Vinculando el archivo JavaScript externo -->
+    <script src="index_script.js"></script>
+</body>
+</html>
